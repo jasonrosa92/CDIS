@@ -1,7 +1,7 @@
 # Conventions & Guidelines – Clinical Data Ingestion Service (CDIS)
 
 **Versão:** 1.0  
-**Autor:** Jason Silva / Principal Engineer 
+**Autor:** Jason Silva / Principal Engineer
 **Data:** 15 de Agosto de 2025  
 
 ---
