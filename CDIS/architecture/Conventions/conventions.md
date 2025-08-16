@@ -22,12 +22,12 @@ O repositório segue a convenção **Gitflow simplificada**:
 ## 2. Naming Conventions
 
 ### Branches
-<tipo>/<descrição-curta>
+tipo/descrição-curta
 - Tipos: `release`, `task`, `hotfix`, `experiment`.
 - Exemplo: `task/CDIS-adr-docs`, `hotfix/CDIS-dlq-fix`.
 
 ### Commits (Conventional Commits)
-<tipo>(<escopo>): <descrição>
+tipo(escopo): descrição
 - Tipos comuns: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`.
 - Escopo: módulo ou microtask.
 - Exemplo: `docs(adr): add initial ADRs v1.0 for Clinical Data Ingestion Service`
