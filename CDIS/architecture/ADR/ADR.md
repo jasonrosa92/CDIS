@@ -126,3 +126,4 @@ Essa arquitetura gerenciada e automatizada permite o auto-escalonamento do servi
 **Consequências:**  
 - **Positivas:** Redução da complexidade operacional, maior uptime e capacidade de escalar rapidamente em resposta à demanda.  
 - **Negativas:** Custos de infraestrutura podem ser maiores do que em soluções dedicadas, mas são compensados pela redução no custo operacional.
+
