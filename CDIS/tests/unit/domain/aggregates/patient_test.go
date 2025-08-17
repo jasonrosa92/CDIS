@@ -7,7 +7,7 @@ import (
 	"github.com/jasonrosa92/CDIS/CDIS/internal/domain/aggregates"
 )
 
-// TestNewPatientValidData verifica se a função NewPatient cria um paciente válido.
+// TestNewPatientValidData checks whether the NewPatient function creates a valid patient.
 func TestNewPatientValidData(t *testing.T) {
 	tenantID := uuid.New()
 	fhirID := "patient-123"
@@ -16,33 +16,33 @@ func TestNewPatientValidData(t *testing.T) {
 	patient, err := aggregates.NewPatient(tenantID, fhirID, firstName)
 
 	if err != nil {
-		t.Fatalf("esperava nenhum erro, mas obteve: %v", err)
+		t.Fatalf("I expected no errors, but got: %v", err)
 	}
 	if patient == nil {
-		t.Fatal("esperava que paciente não fosse nil")
+		t.Fatal("I hoped that the patient wasn't nil.")
 	}
 
 	if patient.FHIRId != fhirID {
-		t.Errorf("esperava FHIRId %s, mas obteve %s", fhirID, patient.FHIRId)
+		t.Errorf("Expected FHIRId %s, but got %s", fhirID, patient.FHIRId)
 	}
 	if patient.FirstName != firstName {
-		t.Errorf("esperava FirstName %s, mas obteve %s", firstName, patient.FirstName)
+		t.Errorf("Expcted FirstName %s, but got %s", firstName, patient.FirstName)
 	}
 	if patient.TenantID != tenantID {
-		t.Errorf("esperava TenantID %s, mas obteve %s", tenantID, patient.TenantID)
+		t.Errorf("Expected TenantID %s, but got %s", tenantID, patient.TenantID)
 	}
 	if patient.Active != true {
-		t.Error("esperava que o paciente estivesse ativo por padrão")
+		t.Error("I expected the patient to be active by default.")
 	}
 	if patient.Version != 1 {
-		t.Errorf("esperava versão inicial 1, mas obteve %d", patient.Version)
+		t.Errorf("I was expecting initial version 1, but got %d", patient.Version)
 	}
 	if patient.CreatedAt.IsZero() || patient.UpdatedAt.IsZero() {
-		t.Error("esperava que os timestamps de criação e atualização estivessem definidos")
+		t.Error("I expected the creation and update timestamps to be set.")
 	}
 }
 
-// TestNewPatientInvalidData verifica se a função NewPatient retorna erros para dados inválidos.
+// TestNewPatientInvalidData checks whether the NewPatient function returns errors for invalid data.
 func TestNewPatientInvalidData(t *testing.T) {
 	tenantID := uuid.New()
 	fhirID := "patient-123"
@@ -56,21 +56,21 @@ func TestNewPatientInvalidData(t *testing.T) {
 		expectedErr error
 	}{
 		{
-			name:        "TenantID inválido",
+			name:        "TenantID invalid",
 			tenantID:    uuid.Nil,
 			fhirID:      fhirID,
 			firstName:   firstName,
 			expectedErr: aggregates.ErrInvalidTenantID,
 		},
 		{
-			name:        "FHIRId vazio",
+			name:        "FHIRId empty",
 			tenantID:    tenantID,
 			fhirID:      "",
 			firstName:   firstName,
 			expectedErr: aggregates.ErrInvalidFHIRID,
 		},
 		{
-			name:        "FirstName vazio",
+			name:        "FirstName empty",
 			tenantID:    tenantID,
 			fhirID:      fhirID,
 			firstName:   "",
@@ -82,10 +82,10 @@ func TestNewPatientInvalidData(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			_, err := aggregates.NewPatient(tc.tenantID, tc.fhirID, tc.firstName)
 			if err == nil {
-				t.Fatal("esperava um erro, mas obteve nil")
+				t.Fatal("Expected an ERROR, but got nil")
 			}
 			if err.Error() != tc.expectedErr.Error() {
-				t.Errorf("esperava erro '%s', mas obteve '%s'", tc.expectedErr, err)
+				t.Errorf(" Expected an ERROR '%s', but got '%s'", tc.expectedErr, err)
 			}
 		})
 	}
