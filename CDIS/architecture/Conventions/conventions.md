@@ -1,105 +1,105 @@
 # Conventions & Guidelines – Clinical Data Ingestion Service (CDIS)
 
-**Versão:** 1.0  
-**Autor:** Jason Silva / Principal Engineer
-**Data:** 15 de Agosto de 2025  
+**Version:** 1.0  
+**Author:** Jason Silva / Principal Engineer
+**Date:** August 15, 2025  
 
 ---
 
-## 1. Estrutura de Branches
+## 1. Branch Structure
 
-O repositório segue a convenção **Gitflow simplificada**:
+The repository follows the **simplified Gitflow** convention:
 
-- `main`: versão estável em produção.
-- `release1/CDIS-v1`: branch de release (contém todos os códigos do dia 1).
-- `task/<microtask>`: branch de tarefa dentro da release.
+- `main`: stable version in production.
+- `release1/CDIS-v1`: release branch (contains all code from day 1).
+- `task/<microtask>`: task branch within the release.
   - Ex.: `task/CDIS-docs`, `task/CDIS-runbook`, `task/CDIS-sdr`.
-- Cada microtask deve ser criada **a partir da branch de release** correspondente.
-- Exclua branches remotas obsoletas para manter o repositório limpo.
+- Each microtask must be created **from the corresponding release branch**.
+- Delete obsolete remote branches to keep the repository clean.
 
 ---
 
 ## 2. Naming Conventions
 
 ### Branches
-tipo/descrição-curta
-- Tipos: `release`, `task`, `hotfix`, `experiment`.
-- Exemplo: `task/CDIS-adr-docs`, `hotfix/CDIS-dlq-fix`.
+type/short-description
+- Types: `release`, `task`, `hotfix`, `experiment`.
+- Example: `task/CDIS-adr-docs`, `hotfix/CDIS-dlq-fix`.
 
 ### Commits (Conventional Commits)
-tipo(escopo): descrição
-- Tipos comuns: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`.
-- Escopo: módulo ou microtask.
-- Exemplo: `docs(adr): add initial ADRs v1.0 for Clinical Data Ingestion Service`
-- Sempre escrever **imperativo e claro**.
+type(scope): description
+- Common types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`.
+- Scope: module or microtask.
+- Example: `docs(adr): add initial ADRs v1.0 for Clinical Data Ingestion Service`
+- Always write **imperative and clear**.
 
 ### Tags
-- `vX.Y.Z` para releases.
-- Exemplo: `v1.0.0`, `v2.0.0-beta`.
+- `vX.Y.Z` for releases.
+- Example: `v1.0.0`, `v2.0.0-beta`.
 
 ---
 
 ## 3. Code Style
 
 ### Python
-- PEP8 com `black` + `isort`.
-- Tipagem obrigatória com `mypy`.
-- Estrutura de diretórios clara: `handlers/`, `services/`, `shared/`, `utils/`.
+- PEP8 with `black` + `isort`.
+- Mandatory typing with `mypy`.
+- Clear directory structure: `handlers/`, `services/`, `shared/`, `utils/`.
 
 ### Go
-- `gofmt` obrigatório.
-- Interfaces pequenas e explícitas.
-- Evitar dependência circular entre pacotes.
+- `gofmt` mandatory.
+- Small and explicit interfaces.
+- Avoid circular dependencies between packages.
 
 ### JavaScript / React
 - ESLint + Prettier.
-- Componentes funcionais sempre que possível.
-- Hooks seguindo regras padrão.
+- Functional components whenever possible.
+- Hooks following standard rules.
 
 ---
 
 ## 4. Pull Requests / Code Review
 
-- PR deve ser criado a partir da branch de task.
-- Checklist PR:
-  - [ ] Código testado com TDD.
-  - [ ] Testes unitários >= 80% coverage.
-  - [ ] Código revisado por pelo menos 1 colega.
-  - [ ] ADR/Runbook/Docs atualizados se houver mudanças arquiteturais.
-  - [ ] Nenhum segredo ou credencial exposta.
+- PR must be created from the task branch.
+- PR checklist:
+- [ ] Code tested with TDD.
+- [ ] Unit tests >= 80% coverage.
+- [ ] Code reviewed by at least 1 colleague.
+- [ ] ADR/Runbook/Docs updated if there are architectural changes.
+- [ ] No secrets or credentials exposed.
 
-- PRs devem ter **descrição clara**, referenciando ticket ou microtask.
+- PRs must have a **clear description**, referencing ticket or microtask.
 
 ---
 
-## 5. Observabilidade e Logging
+## 5. Observability and Logging
 
-- Logs estruturados (JSON), usando `slog` ou equivalente.
-- PHI nunca deve ser logado sem mascaramento.
-- Métricas devem ser enviadas para Prometheus/Datadog:
+- Structured logs (JSON), using `slog` or equivalent.
+- PHI should never be logged without masking.
+- Metrics should be sent to Prometheus/Datadog:
   - Throughput
-  - Latência
+  - Latency
   - Failures / Errors
-- Circuit Breakers e DLQs monitorados com alertas críticos.
+- Circuit Breakers and DLQs monitored with critical alerts.
 
 ---
 
-## 6. Segurança e Compliance
+## 6. Security and Compliance
 
-- Todos os dados PHI devem ser criptografados (at-rest e in-transit).
-- Audit logs obrigatórios para operações críticas.
+- All PHI data must be encrypted (at rest and in transit).
+- Audit logs are mandatory for critical operations.
 - Follow HIPAA compliance checklist.
-- Nunca commitar credenciais, tokens ou chaves.
+- Never commit credentials, tokens, or keys.
 
 ---
 
-## 7. Procedimentos Extras
+## 7. Extra Procedures
 
-- Scripts de deploy e migração devem estar versionados.
-- Testes de integração devem rodar em ambiente isolado antes do merge.
-- Documentos ADR, Runbooks e SDRs sempre versionados e revisados.
+- Deployment and migration scripts must be versioned.
+- Integration tests must run in an isolated environment before merging.
+- ADR documents, Runbooks, and SDRs must always be versioned and reviewed.
 
 ---
 
-> Seguindo essas convenções, garantimos código limpo, rastreabilidade de decisões, compliance com HIPAA e facilidade de manutenção em um sistema escalável.
+> By following these conventions, we ensure clean code, decision traceability, HIPAA compliance, and ease of maintenance in a scalable system.
 
